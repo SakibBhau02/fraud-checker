@@ -3,48 +3,67 @@ import { useEffect, useState } from "react";
 
 type Row = { id: string; phone: string; totalOrders: number; successRate: number; riskLevel: string; createdAt: string; checkedBy: { email: string; name: string } | null };
 
+const riskStyle: Record<string, string> = {
+  safe: "bg-emerald-100 text-emerald-800",
+  moderate: "bg-amber-100 text-amber-800",
+  high_risk: "bg-rose-100 text-rose-800",
+};
+
 export default function History() {
   const [q, setQ] = useState(""); const [risk, setRisk] = useState("");
   const [rows, setRows] = useState<Row[]>([]); const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1); const [err, setErr] = useState("");
+  const [total, setTotal] = useState(0);
   async function load(p = 1) {
     setErr("");
     const r = await fetch(`/api/history?q=${encodeURIComponent(q)}&risk=${risk}&page=${p}`);
     const j = await r.json();
     if (!r.ok) { setErr(j.error_bn || "এরর"); return; }
-    setRows(j.rows); setPage(j.page); setPages(j.pages);
+    setRows(j.rows); setPage(j.page); setPages(j.pages); setTotal(j.total);
   }
   useEffect(() => { load(1); }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
-    <main className="max-w-3xl mx-auto p-4 space-y-4">
-      <h1 className="text-xl font-black">চেক হিস্ট্রি</h1>
+    <main className="mx-auto max-w-3xl space-y-4 px-4 py-8">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-black">চেক হিস্ট্রি</h1>
+        <a className="rounded-xl border bg-white px-3 py-1.5 text-sm font-bold shadow-sm hover:bg-slate-50" href="/api/history/export">⬇ CSV</a>
+      </div>
       <form className="flex gap-2" onSubmit={(e) => { e.preventDefault(); load(1); }}>
-        <input className="flex-1 border rounded-xl p-2 font-mono" placeholder="নম্বর সার্চ" value={q} onChange={(e) => setQ(e.target.value)} />
-        <select className="border rounded-xl p-2" value={risk} onChange={(e) => setRisk(e.target.value)}>
+        <input className="flex-1 rounded-2xl border bg-white p-2.5 font-mono shadow-sm outline-orange-500" placeholder="নম্বর সার্চ…"
+          value={q} onChange={(e) => setQ(e.target.value)} />
+        <select className="rounded-2xl border bg-white p-2.5 shadow-sm" value={risk} onChange={(e) => setRisk(e.target.value)}>
           <option value="">সব রিস্ক</option>
           <option value="safe">Safe</option>
           <option value="moderate">Moderate</option>
           <option value="high_risk">High Risk</option>
         </select>
-        <button className="bg-orange-600 text-white px-4 rounded-xl font-bold">খুঁজুন</button>
+        <button className="rounded-2xl bg-slate-900 px-4 font-bold text-white">খুঁজুন</button>
       </form>
-      <a className="text-sm underline" href="/api/history/export">CSV ডাউনলোড</a>
-      {err && <p className="text-sm text-red-600">{err}</p>}
-      <table className="w-full text-sm">
-        <thead><tr className="text-left text-xs"><th>নম্বর</th><th>মোট</th><th>সাকসেস%</th><th>রিস্ক</th><th>সময়</th></tr></thead>
-        <tbody>{rows.map((r) => (
-          <tr key={r.id} className="border-t">
-            <td className="font-mono">{r.phone}</td><td>{r.totalOrders}</td>
-            <td>{r.successRate}%</td><td>{r.riskLevel}</td>
-            <td>{new Date(r.createdAt).toLocaleString("bn-BD")}</td>
-          </tr>))}</tbody>
-      </table>
-      <div className="flex gap-2 text-sm">
-        <button disabled={page <= 1} className="underline disabled:opacity-40" onClick={() => load(page - 1)}>আগে</button>
-        <span>{page} / {pages}</span>
-        <button disabled={page >= pages} className="underline disabled:opacity-40" onClick={() => load(page + 1)}>পরে</button>
+      {err && <p className="rounded-2xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">{err}</p>}
+      <p className="text-xs text-slate-500">মোট {total}টি রেকর্ড</p>
+      <div className="overflow-hidden rounded-3xl border bg-white shadow-sm">
+        <table className="w-full text-sm">
+          <thead><tr className="bg-slate-50 text-left text-xs text-slate-500">
+            <th className="p-3">নম্বর</th><th className="p-3">মোট</th><th className="p-3">সাকসেস</th><th className="p-3">রিস্ক</th><th className="p-3">সময়</th>
+          </tr></thead>
+          <tbody>{rows.map((r) => (
+            <tr key={r.id} className="border-t hover:bg-orange-50/40">
+              <td className="p-3 font-mono font-bold">{r.phone}</td><td className="p-3">{r.totalOrders}</td>
+              <td className="p-3 font-bold">{r.successRate}%</td>
+              <td className="p-3"><span className={`rounded-full px-2 py-0.5 text-xs font-bold ${riskStyle[r.riskLevel] ?? riskStyle.moderate}`}>{r.riskLevel}</span></td>
+              <td className="p-3 text-xs text-slate-500">{new Date(r.createdAt).toLocaleString("bn-BD")}</td>
+            </tr>))}
+            {rows.length === 0 && <tr><td colSpan={5} className="p-6 text-center text-slate-400">এখনো কোনো চেক নেই — প্রথমে নম্বর চেক করুন</td></tr>}
+          </tbody>
+        </table>
       </div>
-      <a className="text-sm underline" href="/">← চেক পেজ</a>
+      {pages > 1 && (
+        <div className="flex items-center justify-center gap-3 text-sm">
+          <button disabled={page <= 1} className="rounded-lg border bg-white px-3 py-1 disabled:opacity-40" onClick={() => load(page - 1)}>← আগে</button>
+          <span className="font-bold">{page} / {pages}</span>
+          <button disabled={page >= pages} className="rounded-lg border bg-white px-3 py-1 disabled:opacity-40" onClick={() => load(page + 1)}>পরে →</button>
+        </div>
+      )}
     </main>
   );
 }
