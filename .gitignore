@@ -27,6 +27,8 @@ yarn-error.log*
 
 # local env files
 .env*.local
+*.local.json
+.parcelvai-cookies.local.json
 
 # vercel
 .vercel
