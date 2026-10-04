@@ -36,15 +36,25 @@ Cookies → `bd_session`-এর মান কপি করুন।
 
 টেস্ট: `npm test` (বর্তমানে ৬টা)। টেস্ট নম্বর: `01712345678`।
 
-## Vercel-এ ডেপ্লয় (পরে)
+## Vercel-এ ডেপ্লয়
 
-1. Neon (neon.tech) বা Supabase-এ Postgres বানিয়ে connection string নিন।
-2. Vercel → Import repo → Environment Variables-এ উপরের সব (`DATABASE_URL`,
-   `NEXTAUTH_SECRET`, `NEXTAUTH_URL=https://<আপনার-ডোমেন>`,
-   `PARCELVAI_SESSION`, `PARCELVAI_DID`, `SEED_ADMIN_*`) বসান।
-3. Build Command: `npx prisma migrate deploy && next build`।
-4. ডেপ্লয়ের পর একবার `npx prisma db seed` (বা Vercel console থেকে) চালিয়ে
-   admin বানান। Session expire হলে `/settings` থেকে বদলে নিন — redeploy লাগে না।
+1. Vercel → Import repo → Environment Variables-এ এগুলো বসান:
+
+| Variable | মান |
+|---|---|
+| `DATABASE_URL` | Neon connection string (pooler URL, `?sslmode=require...` সহ) |
+| `NEXTAUTH_SECRET` | ৩২+ অক্ষরের র‍্যান্ডম স্ট্রিং (যেমন `openssl rand -base64 32`) |
+| `NEXTAUTH_URL` | `https://<আপনার-ডোমেন>` |
+| `PARCELVAI_SESSION` | ParcelVai cookie `bd_session`-এর মান |
+| `PARCELVAI_DID` | ParcelVai cookie `_bdd_did`-এর মান |
+| `SEED_SUPERADMIN_EMAIL` | superadmin ইমেইল |
+| `SEED_SUPERADMIN_PASSWORD` | superadmin পাসওয়ার্ড |
+| `CACHE_TTL_HOURS` | `24` (ঐচ্ছিক) |
+
+2. Build Command: `npx prisma migrate deploy && next build`।
+3. ডেপ্লয়ের পর **একবার** seed চালান (Vercel → Storage/Console থেকে বা CLI):
+   `npx prisma db seed` — superadmin তৈরি হবে।
+4. Session expire হলে `/settings` থেকে বদলে নিন — redeploy লাগে না।
 
 ## রোল ও API key সীমা
 

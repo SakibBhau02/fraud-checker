@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
-  { href: "/", label: "চেক" },
+  { href: "/check", label: "চেক" },
   { href: "/history", label: "হিস্ট্রি" },
   { href: "/dashboard", label: "ড্যাশবোর্ড" },
   { href: "/settings", label: "সেটিংস" },
@@ -15,6 +15,24 @@ export default function Header() {
   const path = usePathname();
   if (path === "/login") return null;
   const role = (data?.user as unknown as { role?: string } | undefined)?.role;
+  if (!data?.user?.email) {
+    return (
+      <header className="sticky top-0 z-10 border-b border-slate-200 bg-white/90 backdrop-blur">
+        <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
+          <Link href="/" className="flex items-center gap-2.5">
+            <span className="grid h-9 w-9 place-items-center rounded-xl bg-slate-900 text-lg font-black text-amber-400">✓</span>
+            <span>
+              <span className="block font-black leading-tight text-slate-900">ফ্রড চেকার</span>
+              <span className="block text-[10px] font-medium uppercase tracking-widest text-slate-400">Courier Risk Intelligence</span>
+            </span>
+          </Link>
+          <Link href="/login" className="rounded-full bg-slate-900 px-5 py-2 text-sm font-bold text-white transition hover:bg-slate-700">
+            লগইন
+          </Link>
+        </div>
+      </header>
+    );
+  }
   return (
     <header className="sticky top-0 z-10 border-b border-slate-800 bg-slate-900 text-white shadow-md">
       <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
