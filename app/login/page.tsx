@@ -7,7 +7,7 @@ function Form() {
   const [email, setEmail] = useState(""); const [password, setPassword] = useState("");
   const [err, setErr] = useState(""); const [loading, setLoading] = useState(false);
   const r = useRouter();
-  const next = useSearchParams().get("callbackUrl") || "/check";
+  const next = useSearchParams().get("callbackUrl") || "/";
   return (
     <form className="w-full max-w-sm space-y-4 rounded-3xl bg-white p-8 shadow-2xl" onSubmit={async (e) => {
       e.preventDefault(); setErr(""); setLoading(true);
@@ -20,9 +20,9 @@ function Form() {
         <h1 className="mt-3 text-2xl font-black text-slate-900">ফ্রড চেকার</h1>
         <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">Courier Risk Intelligence</p>
       </div>
-      <input className="w-full rounded-2xl border border-slate-200 bg-slate-50 p-3 outline-amber-500" placeholder="ইমেইল" type="email"
+      <input className="w-full rounded-2xl border border-slate-200 bg-slate-50 p-3 outline-amber-500" placeholder="ইমেইল" type="email" autoComplete="off"
         value={email} onChange={(e) => setEmail(e.target.value)} />
-      <input className="w-full rounded-2xl border border-slate-200 bg-slate-50 p-3 outline-amber-500" type="password" placeholder="পাসওয়ার্ড"
+      <input className="w-full rounded-2xl border border-slate-200 bg-slate-50 p-3 outline-amber-500" type="password" placeholder="পাসওয়ার্ড" autoComplete="new-password"
         value={password} onChange={(e) => setPassword(e.target.value)} />
       {err && <p className="rounded-xl bg-red-50 p-2 text-center text-sm font-medium text-red-600 ring-1 ring-red-200">{err}</p>}
       <button disabled={loading} className="w-full rounded-2xl bg-slate-900 p-3 font-black text-white shadow transition hover:bg-slate-700 disabled:opacity-50">
