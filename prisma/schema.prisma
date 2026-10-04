@@ -12,6 +12,7 @@ model User {
   passwordHash String
   role         String   @default("member")
   checks       CheckHistory[]
+  apiKeys      ApiKey[]
   createdAt    DateTime @default(now())
 }
 model CheckHistory {
@@ -34,4 +35,16 @@ model AppSetting {
   key       String   @id
   value     String
   updatedAt DateTime @updatedAt
+}
+model ApiKey {
+  id          String    @id @default(uuid())
+  label       String
+  keyHash     String    @unique
+  prefix      String
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
+  revoked     Boolean   @default(false)
+  lastUsedAt  DateTime?
+  createdAt   DateTime  @default(now())
+  @@index([userId, createdAt])
 }

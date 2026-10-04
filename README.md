@@ -44,6 +44,64 @@ Cookies → `bd_session`-এর মান কপি করুন।
 4. ডেপ্লয়ের পর একবার `npx prisma db seed` (বা Vercel console থেকে) চালিয়ে
    admin বানান। Session expire হলে `/settings` থেকে বদলে নিন — redeploy লাগে না।
 
+## বাইরের ওয়েবসাইট থেকে ব্যবহার (API)
+
+`/settings` পেজে গিয়ে **API Keys** থেকে key বানান (`fk_...`)। তারপর যেকোনো
+কাস্টম ওয়েবসাইট থেকে:
+
+```bash
+curl -X POST https://<আপনার-ডোমেন>/api/v1/check \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: fk_আপনার_KEY" \
+  -d '{"phone":"01712345678"}'
+```
+
+সফল রেসপন্স (200):
+
+```json
+{
+  "phone": "01712345678",
+  "total": 413, "delivered": 228, "cancelled": 185,
+  "successRate": 55, "riskLevel": "high_risk",
+  "labelBn": "উচ্চ ঝুঁকি (High Risk)",
+  "recommendation": "অগ্রিম কুরিয়ার চার্জ গ্রহণ করে অর্ডার কনফার্ম করুন।",
+  "couriers": [{ "id": "pathao", "name": "Pathao Courier", "total": 397, "delivered": 221, "cancelled": 176, "rate": 56 }],
+  "partial": false, "cached": false, "checkedAt": "..."
+}
+```
+
+- `riskLevel`: `safe` | `moderate` | `high_risk`
+- ভুল key → 401, ভুল নম্বর → 400, ParcelVai সমস্যা → 502 (বাংলা `error_bn` সহ)
+- প্রতিটি API চেকও হিস্ট্রিতে সেভ হয় (key-এর মালিকের নামে)
+- `Authorization: Bearer fk_...` হেডারও চলবে
+
+PHP উদাহরণ:
+
+```php
+$ch = curl_init("https://<ডোমেন>/api/v1/check");
+curl_setopt_array($ch, [
+  CURLOPT_POST => true,
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_HTTPHEADER => ["Content-Type: application/json", "x-api-key: fk_..."],
+  CURLOPT_POSTFIELDS => json_encode(["phone" => $customerPhone]),
+]);
+$data = json_decode(curl_exec($ch), true);
+if (($data["riskLevel"] ?? "") === "high_risk") {
+  // অগ্রিম ডেলিভারি চার্জ চান
+}
+```
+
+JavaScript (fetch) উদাহরণ:
+
+```js
+const r = await fetch("https://<ডোমেন>/api/v1/check", {
+  method: "POST",
+  headers: { "Content-Type": "application/json", "x-api-key": "fk_..." },
+  body: JSON.stringify({ phone: "01712345678" }),
+});
+const d = await r.json(); // d.riskLevel, d.successRate ...
+```
+
 ## নোট
 
 - নাম-ঠিকানা দেখানো বা সেভ করা হয় না, শুধু ডেলিভারি রেশিও।

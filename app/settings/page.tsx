@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import ApiKeys from "@/components/ApiKeys";
 
 export default function Settings() {
   const [session, setSession] = useState(""); const [did, setDid] = useState("");
@@ -31,6 +32,7 @@ export default function Settings() {
         </div>
         {msg && <p className="rounded-xl bg-slate-50 p-2 text-sm font-medium">{msg}</p>}
       </div>
+      <ApiKeys />
     </main>
   );
 }

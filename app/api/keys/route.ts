@@ -1,0 +1,34 @@
+import { NextRequest, NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { generateApiKey, hashApiKey } from "@/lib/apikey";
+import { prisma } from "@/lib/prisma";
+
+async function me() {
+  const session = await getServerSession(authOptions);
+  if (!session?.user?.email) return null;
+  return prisma.user.findUnique({ where: { email: session.user.email } });
+}
+
+export async function GET() {
+  const user = await me();
+  if (!user) return NextResponse.json({ error_bn: "লগইন প্রয়োজন" }, { status: 401 });
+  const keys = await prisma.apiKey.findMany({
+    where: { userId: user.id }, orderBy: { createdAt: "desc" },
+    select: { id: true, label: true, prefix: true, revoked: true, lastUsedAt: true, createdAt: true },
+  });
+  return NextResponse.json({ keys });
+}
+
+export async function POST(req: NextRequest) {
+  const user = await me();
+  if (!user) return NextResponse.json({ error_bn: "লগইন প্রয়োজন" }, { status: 401 });
+  const { label } = (await req.json().catch(() => ({}))) as { label?: string };
+  if (!label?.trim()) return NextResponse.json({ error_bn: "key-এর নাম দিন" }, { status: 400 });
+  const { key, prefix } = generateApiKey();
+  const created = await prisma.apiKey.create({
+    data: { label: label.trim(), keyHash: hashApiKey(key), prefix, userId: user.id },
+    select: { id: true, label: true, prefix: true, createdAt: true },
+  });
+  return NextResponse.json({ ...created, key, note: "এই key একবারই দেখা যাবে — এখনই কপি করে রাখুন" });
+}

@@ -6,7 +6,11 @@ vi.mock("@/lib/parcelvai", () => ({
   fetchFraudData: async () => ({ phone: "01712345678", operator: "GP", total: 10, delivered: 8, cancelled: 2, successRate: 80, riskLevel: "safe", labelBn: "নিরাপদ", recommendation: "OK", couriers: [], raw: {} }),
 }));
 vi.mock("@/lib/prisma", () => ({
-  prisma: { checkHistory: { findFirst: async () => null, create: async (a: unknown) => a }, appSetting: { findUnique: async () => null } },
+  prisma: {
+    checkHistory: { findFirst: async () => null, create: async (a: unknown) => a },
+    appSetting: { findUnique: async () => null },
+    user: { findUnique: async () => ({ id: "u1" }) },
+  },
 }));
 import { POST } from "./route";
 import { NextRequest } from "next/server";
