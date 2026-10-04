@@ -1,0 +1,333 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "ParcelVai" [ref=e6]
+        - generic [ref=e7]:
+          - button "ডার্ক মোড চালু করুন" [ref=e8]
+          - generic [ref=e11]:
+            - generic [ref=e515]: "ফ্রি সার্চ: 2/3"
+            - button "লগইন" [ref=e520] [cursor=pointer]
+            - button "ফ্রি রেজিস্ট্রেশন" [ref=e521] [cursor=pointer]
+          - button "Toggle navigation menu" [ref=e12]
+    - generic [ref=e15]:
+      - generic [ref=e16]: বাংলাদেশের শীর্ষ কুরিয়ারগুলোর ফ্রড ও ডেলিভারি হিস্ট্রি চেকার
+      - generic [ref=e19]:
+        - heading "পার্সেল পাঠানোর আগে জানুন, কাস্টমার কি রিটার্ন করার মতো?" [level=1] [ref=e20]
+        - paragraph [ref=e21]: ফোন নম্বর দিন। Steadfast, Pathao, REDX, Paperfly ও CarryBee-তে ওই কাস্টমারের ডেলিভারি ও রিটার্ন হিস্ট্রি এক জায়গায় দেখে নিন, একদম ফ্রি।
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - generic [ref=e24]:
+            - generic: 🇧🇩 +88
+            - textbox "017XXXXXXXX" [ref=e25]: "01712345678"
+          - button "হিস্ট্রি চেক করুন" [ref=e26] [cursor=pointer]
+        - generic [ref=e31]:
+          - generic [ref=e32]: "নমুনা নম্বর দিয়ে ট্রাই করে দেখুন:"
+          - button "01712345678 (Safe)" [ref=e33] [cursor=pointer]
+          - button "01811000000 (Sample)" [ref=e34] [cursor=pointer]
+        - generic [ref=e37]:
+          - generic [ref=e530]:
+            - generic [ref=e531]: "ফ্রি ট্রায়াল:"
+            - generic [ref=e532]: ১ম নম্বরটি ১০০% ফ্রি
+            - generic [ref=e533]: •
+            - generic [ref=e534]: 2টি বাকি
+          - button "ফ্রি একাউন্ট খুলুন (আনলিমিটেড সার্চ) →" [ref=e537] [cursor=pointer]
+        - generic [ref=e40]:
+          - generic [ref=e41]: কোনো ফি নেই
+          - generic [ref=e45]: মাল্টি-কুরিয়ার লাইভ ডাটা
+          - generic [ref=e49]: কাস্টমারের নাম-ঠিকানা প্রকাশ করা হয় না
+    - generic [ref=e55]:
+      - generic [ref=e56]:
+        - generic [ref=e57]: মাল্টি
+        - generic [ref=e58]: কুরিয়ার নেটওয়ার্ক
+      - generic [ref=e59]:
+        - generic [ref=e60]: লাইভ
+        - generic [ref=e61]: কুরিয়ার API ডাটা
+      - generic [ref=e62]:
+        - generic [ref=e63]: সরাসরি
+        - generic [ref=e64]: রিয়েল-টাইম কুয়েরি
+      - generic [ref=e65]:
+        - generic [ref=e66]: ১০০% ফ্রি
+        - generic [ref=e67]: কোনো হিডেন ফি নেই
+    - generic [ref=e69]:
+      - generic [ref=e70]:
+        - generic [ref=e71]: সহজ ৩টি ধাপ
+        - heading "৩ ধাপে কাস্টমার যাচাই" [level=2] [ref=e73]
+        - paragraph [ref=e74]: অর্ডার কনফার্ম করার আগে মাত্র ১০ সেকেন্ড সময় দিয়ে কাস্টমারের ডেলিভারি রেকর্ড বুঝে নিন।
+      - generic [ref=e75]:
+        - generic [ref=e76]:
+          - generic [ref=e77]: ০১
+          - heading "নম্বর দিন" [level=3] [ref=e78]
+          - paragraph [ref=e79]: অর্ডারকারী কাস্টমারের মোবাইল নম্বর উপরের সার্চ বক্সে লিখুন বা পেস্ট করুন।
+        - generic [ref=e80]:
+          - generic [ref=e81]: ০২
+          - heading "হিস্ট্রি দেখুন" [level=3] [ref=e82]
+          - paragraph [ref=e83]: শীর্ষ কুরিয়ারগুলোতে ওই নম্বরের সর্বমোট ডেলিভারি ও রিটার্ন রেকর্ড নিমেষেই এক জায়গায় পেয়ে যান।
+        - generic [ref=e84]:
+          - generic [ref=e85]: ০৩
+          - heading "সিদ্ধান্ত নিন" [level=3] [ref=e86]
+          - paragraph [ref=e87]: রেকর্ড নিরাপদ হলে পার্সেল বুক করুন, ঝুঁকি থাকলে অগ্রিম ডেলিভারি চার্জ নিশ্চিত করে পাঠান।
+    - generic [ref=e89]:
+      - generic [ref=e90]:
+        - heading "রেজাল্ট দেখতে যেমন হবে" [level=2] [ref=e91]
+        - paragraph [ref=e92]: নিচের উদাহরণ দুটি ডেমো তথ্য দিয়ে তৈরি, বাস্তব কোনো কাস্টমারের নয়।
+      - generic [ref=e93]:
+        - generic [ref=e94]:
+          - generic [ref=e95]:
+            - generic [ref=e96]: নিরাপদ ক্রেতা (Safe Buyer)
+            - generic [ref=e99]: নমুনা
+          - generic [ref=e100]:
+            - generic [ref=e101]:
+              - generic [ref=e102]: মোট পার্সেল
+              - generic [ref=e103]: ২৮
+            - generic [ref=e104]:
+              - generic [ref=e105]: ডেলিভারড
+              - generic [ref=e106]: ২৬
+            - generic [ref=e107]:
+              - generic [ref=e108]: রিটার্ন
+              - generic [ref=e109]: ২
+          - generic [ref=e110]:
+            - generic [ref=e111]: "সাকসেস রেট: ৯৩% • বিশ্বস্ত গ্রাহক"
+            - paragraph [ref=e116]: "করণীয়: নির্ভয়ে ক্যাশ অন ডেলিভারিতে পার্সেল বুক করতে পারেন।"
+        - generic [ref=e117]:
+          - generic [ref=e118]:
+            - generic [ref=e119]: উচ্চ ঝুঁকিপূর্ণ (High Risk)
+            - generic [ref=e122]: নমুনা
+          - generic [ref=e123]:
+            - generic [ref=e124]:
+              - generic [ref=e125]: মোট পার্সেল
+              - generic [ref=e126]: ১৪
+            - generic [ref=e127]:
+              - generic [ref=e128]: ডেলিভারড
+              - generic [ref=e129]: ৫
+            - generic [ref=e130]:
+              - generic [ref=e131]: রিটার্ন
+              - generic [ref=e132]: ৯
+          - generic [ref=e133]:
+            - generic [ref=e134]: "সাকসেস রেট: ৩৫% • ঘন ঘন পার্সেল বাতিলকারী"
+            - paragraph [ref=e138]: "পরামর্শ: সম্পূর্ণ বা অন্তত ডেলিভারি চার্জ অগ্রিম নিয়ে অর্ডার কনফার্ম করুন।"
+    - generic [ref=e140]:
+      - generic [ref=e141]:
+        - heading "কেন আপনার বিজনেসে ParcelVai?" [level=2] [ref=e142]
+        - paragraph [ref=e143]: ভুয়া অর্ডার ও রিটার্নের ক্ষতি আগেই ঠেকিয়ে প্রতিটি ডেলিভারি লাভজনক রাখুন।
+      - generic [ref=e144]:
+        - generic [ref=e145]:
+          - heading "মাল্টি-কুরিয়ার এগ্রিগেশন" [level=3] [ref=e151]
+          - paragraph [ref=e152]: আলাদা আলাদা কুরিয়ার পোর্টালে লগইনের ঝামেলা নেই। Steadfast, Pathao, REDX, Paperfly ও CarryBee-র ডাটা এক ক্লিকে।
+        - generic [ref=e153]:
+          - heading "রিটার্ন চার্জের অপচয় বন্ধ" [level=3] [ref=e158]
+          - paragraph [ref=e159]: প্রতিটি রিটার্নে কুরিয়ার চার্জ ও প্যাকেজিংসহ প্রায় ১২০–১৬০ টাকা ক্ষতি হয়। ঝুঁকিপূর্ণ কাস্টমার আগে চিনে ক্ষতি কমান।
+        - generic [ref=e160]:
+          - heading "রিস্ক স্কোর ও সাজেশন" [level=3] [ref=e165]
+          - paragraph [ref=e166]: শুধু সংখ্যা নয়; নিরাপদ, সতর্কতা কিংবা ঝুঁকিপূর্ণ লেবেল এবং সাথে সাথে কী পদক্ষেপ নেওয়া উচিত তার বাস্তবসম্মত পরামর্শ।
+        - generic [ref=e167]:
+          - heading "রিয়েল-টাইম ফ্রড ডিটেকশন" [level=3] [ref=e171]
+          - paragraph [ref=e172]: কোনো পুরানো বা স্ট্যাটিক ডাটাবেস নয়, সরাসরি কুরিয়ার সার্ভিসের রিয়েল-টাইম লাইভ ডাটা বিশ্লেষণ করে সবচেয়ে আপডেট তথ্য প্রদান করে।
+        - generic [ref=e173]:
+          - heading "চেক হিস্ট্রি ড্যাশবোর্ড" [level=3] [ref=e179]
+          - paragraph [ref=e180]: আপনার অ্যাকাউন্টে লগইন করে পূর্বে চেক করা সকল নম্বরের রেকর্ড ড্যাশবোর্ডে সার্চ ও এক্সপোর্ট করে সংরক্ষণ করতে পারবেন।
+        - generic [ref=e181]:
+          - heading "প্রাইভেসি-ফার্স্ট আর্কিটেকচার" [level=3] [ref=e186]
+          - paragraph [ref=e187]: কাস্টমারের নাম, ঠিকানা কিংবা কী পণ্য কিনেছেন তা প্রকাশ বা সংরক্ষণ করা হয় না। কেবল পার্সেলের ডেলিভারি অনুপাত প্রদর্শিত হয়।
+    - generic [ref=e189]:
+      - generic [ref=e190]:
+        - generic [ref=e191]: ইন্টারেক্টিভ ক্যালকুলেটর
+        - heading "রিটার্নে আপনার মাসে কত টাকা নষ্ট হচ্ছে?" [level=2] [ref=e195]
+        - paragraph [ref=e196]: আপনার বর্তমান অর্ডার সংখ্যা ও রিটার্ন রেট বসিয়ে দেখুন বছরে কুরিয়ার চার্জ ও প্যাকেজিংয়ে কত টাকা লোকসান হচ্ছে।
+      - generic [ref=e197]:
+        - generic [ref=e198]:
+          - generic [ref=e199]:
+            - generic [ref=e200]:
+              - generic [ref=e201]: মাসে মোট পার্সেল / অর্ডার
+              - generic [ref=e206]: ৩০০ টি
+            - slider [ref=e207] [cursor=pointer]: "300"
+            - generic [ref=e208]:
+              - generic [ref=e209]: ২০
+              - generic [ref=e210]: ১,৫০০
+              - generic [ref=e211]: ৩,০০০+
+          - generic [ref=e212]:
+            - generic [ref=e213]:
+              - generic [ref=e214]: গড় রিটার্ন রেট (%)
+              - generic [ref=e219]: ২০%
+            - slider [ref=e220] [cursor=pointer]: "20"
+            - generic [ref=e221]:
+              - generic [ref=e222]: ৫%
+              - generic [ref=e223]: ২৫%
+              - generic [ref=e224]: ৫০%
+          - generic [ref=e225]:
+            - generic [ref=e226]:
+              - generic [ref=e227]: প্রতি রিটার্নে গড় ক্ষতি (কুরিয়ার + প্যাকেজিং)
+              - generic [ref=e230]: ৳১৪০
+            - slider [ref=e231] [cursor=pointer]: "140"
+            - generic [ref=e232]:
+              - generic [ref=e233]: ৳৮০ (লোকাল)
+              - generic [ref=e234]: ৳১৪০ (গড়)
+              - generic [ref=e235]: ৳৩০০ (বড় আইটেম)
+          - paragraph [ref=e236]:
+            - text: 💡
+            - emphasis [ref=e237]: "ফুটনোট: এটি আনুমানিক হিসাব; আপনার কুরিয়ার চার্জ, রিটার্ন পেনাল্টি ও প্যাকেজিং খরচ অনুযায়ী বদলে নিতে পারেন।"
+        - generic [ref=e238]:
+          - generic [ref=e239]:
+            - text: আপনার লোকসানের চিত্র
+            - generic [ref=e240]:
+              - generic [ref=e241]:
+                - generic [ref=e242]: "মাসে আনুমানিক রিটার্ন:"
+                - generic [ref=e243]: ৬০ টি
+              - generic [ref=e244]:
+                - generic [ref=e245]: "মাসিক আর্থিক ক্ষতি:"
+                - generic [ref=e246]: ৳৮,৪০০
+              - generic [ref=e247]:
+                - generic [ref=e248]: "বছরে মোট ক্ষতি:"
+                - generic [ref=e249]: ৳১,০০,৮০০
+            - generic [ref=e250]:
+              - generic [ref=e251]: "ParcelVai দিয়ে রিটার্ন অর্ধেক কমালে:"
+              - generic [ref=e256]: বছরে বাঁচবে ৳৫০,৪০০
+              - paragraph [ref=e257]: সন্দেহজনক কাস্টমারদের আগেই চিনে অগ্রিম চার্জ নিলে এই ক্ষতি রোধ করা সম্ভব।
+          - link "ফ্রিতে কাস্টমার চেক শুরু করুন" [ref=e259] [cursor=pointer]:
+            - /url: "#checker"
+    - generic [ref=e264]:
+      - generic [ref=e265]:
+        - heading "যেসব কুরিয়ারের তথ্য আমরা দেখাই" [level=2] [ref=e266]
+        - paragraph [ref=e267]: আপনার ব্যবসার জন্য সবচেয়ে বেশি ব্যবহৃত শীর্ষ কুরিয়ার সার্ভিসগুলোর ডেলিভারি রেকর্ড এক জায়গায়। কুরিয়ার API-এর মাধ্যমে ডাটা সংগ্রহ করা হয়।
+      - generic [ref=e268]:
+        - generic [ref=e269]:
+          - generic [ref=e270]: সাময়িক সীমিত
+          - img "Steadfast Courier" [ref=e272]
+          - generic [ref=e273]:
+            - heading "Steadfast Courier" [level=4] [ref=e274]
+            - paragraph [ref=e275]: শীর্ষ কুরিয়ার নেটওয়ার্ক
+        - generic [ref=e276]:
+          - img "Pathao Courier" [ref=e278]
+          - generic [ref=e279]:
+            - heading "Pathao Courier" [level=4] [ref=e280]
+            - paragraph [ref=e281]: দ্রুততম কুরিয়ার নেটওয়ার্ক
+        - generic [ref=e282]:
+          - img "REDX Logistics" [ref=e284]
+          - generic [ref=e285]:
+            - heading "REDX Logistics" [level=4] [ref=e286]
+            - paragraph [ref=e287]: সারাদেশে কভারেজ নেটওয়ার্ক
+        - generic [ref=e288]:
+          - img "Paperfly Courier" [ref=e290]
+          - generic [ref=e291]:
+            - heading "Paperfly Courier" [level=4] [ref=e292]
+            - paragraph [ref=e293]: ডোরস্টেপ কুরিয়ার নেটওয়ার্ক
+        - generic [ref=e294]:
+          - img "CarryBee Logistics" [ref=e296]
+          - generic [ref=e297]:
+            - heading "CarryBee Logistics" [level=4] [ref=e298]
+            - paragraph [ref=e299]: স্মার্ট ডেলিভারি নেটওয়ার্ক
+      - paragraph [ref=e301]: "* কুরিয়ারের নাম ও লোগো শুধু তথ্যসূত্র বোঝাতে ব্যবহৃত। ParcelVai এসব কুরিয়ারের অনুমোদিত পাবলিক বা মার্চেন্ট API এগ্রিগেশনের মাধ্যমে তথ্য প্রদর্শন করে।"
+    - generic [ref=e303]:
+      - generic [ref=e304]:
+        - generic [ref=e305]: কাদের জন্য তৈরি?
+        - heading "আপনি যদি অনলাইনে বিক্রি করেন, এটা আপনার জন্য" [level=2] [ref=e312]
+        - paragraph [ref=e313]: ব্যবসা যে প্ল্যাটফর্মেই হোক না কেন, ভুয়া ও রিটার্ন প্রবণ অর্ডার ঠেকিয়ে আপনার লাভ নিরাপদ রাখুন।
+      - generic [ref=e314]:
+        - generic [ref=e315]:
+          - heading "ফেসবুক পেজ সেলার" [level=3] [ref=e319]
+          - paragraph [ref=e320]: মেসেঞ্জারে বা কমেন্টে অর্ডার এলে ফোন নম্বর বসিয়ে মাত্র ১০ সেকেন্ডে কাস্টমারের পার্সেল হিস্ট্রি যাচাই করুন।
+        - generic [ref=e321]:
+          - heading "CartVai eCommerce ও ওয়েবসাইট" [level=3] [ref=e326]
+          - paragraph [ref=e327]: CartVai eCommerce প্লাগইন দিয়ে আপনার ই-কমার্স স্টোরে অর্ডার আসার সাথে সাথেই এক ক্লিকে কাস্টমারের পার্সেল ডেলিভারি হিস্ট্রি সরাসরি দেখে ফেক অর্ডার শনাক্ত করুন।
+        - generic [ref=e328]:
+          - heading "অর্ডার প্রসেসিং টিম" [level=3] [ref=e335]
+          - paragraph [ref=e336]: কনফার্মেশন কলের আগে কাকে সাধারণ পাঠানো যায় আর কার ক্ষেত্রে অগ্রিম চার্জ নেওয়া আবশ্যক, তা আগেভাগেই বুঝে নিন।
+    - generic [ref=e340]:
+      - generic [ref=e341]:
+        - text: সম্পূর্ণ ফ্রি প্ল্যাটফর্ম
+        - heading "সম্পূর্ণ ফ্রি, সুন্নাহ আইটি-এর পৃষ্ঠপোষকতায়" [level=2] [ref=e342]
+        - paragraph [ref=e343]: দেশের ই-কমার্স ও এফ-কমার্স উদ্যোক্তাদের কুরিয়ার রিটার্ন ক্ষতি কমাতে সুন্নাহ আইটি (Sunnah IT) ParcelVai প্ল্যাটফর্মটি সম্পূর্ণ ফ্রি রেখেছে। কোনো লুকানো চার্জ বা মাসিক সাবস্ক্রিপশন ফি নেই।
+      - generic [ref=e344]:
+        - generic [ref=e345]: অর্থায়ন ও পৃষ্ঠপোষকতায়
+        - generic [ref=e346]: সুন্নাহ আইটি
+        - generic [ref=e347]: SUNNAH IT
+    - generic [ref=e349]:
+      - generic [ref=e350]:
+        - generic [ref=e351]: সচরাচর জিজ্ঞাসা
+        - heading "সাধারণ প্রশ্ন ও উত্তর (FAQ)" [level=2] [ref=e356]
+        - paragraph [ref=e357]: ParcelVai কীভাবে কাজ করে এবং কীভাবে আপনার রিটার্ন কমাতে সাহায্য করে সে সম্পর্কে বিস্তারিত জানুন।
+      - generic [ref=e358]:
+        - generic [ref=e359]:
+          - button "ডাটা কোথা থেকে আসে?" [expanded] [ref=e360] [cursor=pointer]
+          - generic [ref=e365]: বাংলাদেশের শীর্ষ কুরিয়ার সার্ভিসগুলোর (যেমন Steadfast, Pathao, REDX, Paperfly, CarryBee) অফিসিয়াল পাবলিক বা মার্চেন্ট API এগ্রিগেশনের মাধ্যমে ডেলিভারি হিস্ট্রি অনুসন্ধান করা হয়। ParcelVai কোনো গ্রাহকের নাম, ব্যক্তিগত ঠিকানা কিংবা কী প্রোডাক্ট কিনেছেন তা সংগ্রহ বা প্রদর্শন করে না — শুধুমাত্র সর্বমোট পার্সেল সংখ্যা, ডেলিভারি ও ক্যান্সেলেশনের রেশিও দেখানো হয়।
+        - button "ডাটা কি ১০০% সঠিক?" [ref=e367] [cursor=pointer]
+        - button "ParcelVai কেন সম্পূর্ণ ফ্রি?" [ref=e373] [cursor=pointer]
+        - button "কাস্টমার কি জানতে পারবে আমি তার হিস্ট্রি চেক করেছি?" [ref=e379] [cursor=pointer]
+        - button "লগইন ছাড়া কয়টা চেক করা যাবে?" [ref=e385] [cursor=pointer]
+        - button "কত দ্রুত কাস্টমার হিস্ট্রি পাওয়া যায়?" [ref=e391] [cursor=pointer]
+        - button "কোনো একটি কুরিয়ারে ডাটা না দেখালে কী করব?" [ref=e397] [cursor=pointer]
+        - button "কাস্টমার আমাকে ব্লক করে দিলে বা অভিযোগ করলে কী করব?" [ref=e403] [cursor=pointer]
+    - generic [ref=e409]:
+      - heading "আজই ঝুঁকিপূর্ণ অর্ডার চিনে রিটার্ন কমানো শুরু করুন" [level=2] [ref=e410]
+      - paragraph [ref=e411]: ফ্রি অ্যাকাউন্ট খুলুন, কোনো কার্ড লাগবে না। মাত্র ১০ সেকেন্ডে কাস্টমার যাচাই করে নিরাপদ ডেলিভারি নিশ্চিত করুন।
+      - generic [ref=e412]:
+        - button "ফ্রি অ্যাকাউন্ট তৈরি করুন" [ref=e413] [cursor=pointer]
+        - link "সাপোর্টে কথা বলুন" [ref=e417] [cursor=pointer]:
+          - /url: https://wa.me/8801616220200
+    - contentinfo [ref=e421]:
+      - generic [ref=e422]:
+        - generic [ref=e423]:
+          - generic [ref=e424]:
+            - link [ref=e425] [cursor=pointer]:
+              - /url: /
+              - img "ParcelVai" [ref=e426]
+            - paragraph [ref=e427]: ই-কমার্স ও এফ-কমার্স সেলারদের জন্য রিয়েল-টাইম কুরিয়ার ফ্রড ও কাস্টমার ডেলিভারি হিস্ট্রি চেকার।
+            - paragraph [ref=e428]: সুন্নাহ আইটি (Sunnah IT) এর পৃষ্ঠপোষকতায় পরিচালিত
+          - generic [ref=e429]:
+            - heading "প্রোডাক্ট" [level=4] [ref=e430]
+            - list [ref=e431]:
+              - listitem [ref=e432]:
+                - link "লাইভ ফ্রড চেকার" [ref=e433] [cursor=pointer]:
+                  - /url: "#checker"
+              - listitem [ref=e434]:
+                - link "ফিচারসমূহ" [ref=e435] [cursor=pointer]:
+                  - /url: "#features"
+              - listitem [ref=e436]:
+                - link "রিটার্ন লস ক্যালকুলেটর" [ref=e437] [cursor=pointer]:
+                  - /url: "#calculator"
+              - listitem [ref=e438]:
+                - link "কীভাবে কাজ করে" [ref=e439] [cursor=pointer]:
+                  - /url: "#how"
+              - listitem [ref=e440]:
+                - link "মার্চেন্ট ড্যাশবোর্ড" [ref=e441] [cursor=pointer]:
+                  - /url: /account
+          - generic [ref=e442]:
+            - heading "কোম্পানি ও সাপোর্ট" [level=4] [ref=e443]
+            - list [ref=e444]:
+              - listitem [ref=e445]:
+                - link "যোগাযোগ (Contact)" [ref=e446] [cursor=pointer]:
+                  - /url: /contact
+              - listitem [ref=e447]:
+                - button "ফিডব্যাক ও মতামত" [ref=e448] [cursor=pointer]
+              - listitem [ref=e449]:
+                - link "WhatsApp সাপোর্ট" [ref=e450] [cursor=pointer]:
+                  - /url: https://wa.me/8801616220200
+              - listitem [ref=e451]:
+                - link "সুন্নাহ আইটি" [ref=e452] [cursor=pointer]:
+                  - /url: https://sunnahit.com
+          - generic [ref=e453]:
+            - heading "আইনি ও নীতি" [level=4] [ref=e454]
+            - list [ref=e455]:
+              - listitem [ref=e456]:
+                - link "শর্তাবলী (Terms & Conditions)" [ref=e457] [cursor=pointer]:
+                  - /url: /terms
+              - listitem [ref=e458]:
+                - link "প্রাইভেসি পলিসি (Privacy Policy)" [ref=e459] [cursor=pointer]:
+                  - /url: /privacy
+              - listitem [ref=e460]:
+                - link "ব্যবহারের নীতিমালা / রিফান্ড" [ref=e461] [cursor=pointer]:
+                  - /url: /refund-policy
+        - generic [ref=e462]:
+          - paragraph [ref=e463]: © 2026 ParcelVai. All rights reserved.
+          - generic [ref=e464]:
+            - link "শর্তাবলী" [ref=e465] [cursor=pointer]:
+              - /url: /terms
+            - generic [ref=e466]: •
+            - link "প্রাইভেসি" [ref=e467] [cursor=pointer]:
+              - /url: /privacy
+            - generic [ref=e468]: •
+            - link "সাপোর্ট" [ref=e469] [cursor=pointer]:
+              - /url: /contact
+  - alert [ref=e514]
