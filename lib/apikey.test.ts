@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { extractApiKey, generateApiKey, hashApiKey } from "./apikey";
+import { extractApiKey, generateApiKey, hashApiKey, keyLimitFor } from "./apikey";
 
 describe("apikey", () => {
   it("generates fk_ key with prefix", () => {
@@ -21,5 +21,11 @@ describe("apikey", () => {
   });
   it("returns null when missing", () => {
     expect(extractApiKey(new Headers())).toBeNull();
+  });
+  it("caps keys by role", () => {
+    expect(keyLimitFor("member")).toBe(3);
+    expect(keyLimitFor("admin")).toBe(15);
+    expect(keyLimitFor("superadmin")).toBe(Infinity);
+    expect(keyLimitFor(undefined)).toBe(3);
   });
 });

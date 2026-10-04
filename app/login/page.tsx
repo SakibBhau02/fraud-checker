@@ -8,24 +8,24 @@ export default function Login() {
   const [err, setErr] = useState(""); const [loading, setLoading] = useState(false);
   const r = useRouter();
   return (
-    <main className="grid min-h-[80vh] place-items-center bg-gradient-to-br from-orange-50 via-white to-amber-50 p-4">
-      <form className="w-full max-w-sm space-y-4 rounded-3xl border bg-white p-8 shadow-xl" onSubmit={async (e) => {
+    <main className="grid min-h-[70vh] place-items-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4">
+      <form className="w-full max-w-sm space-y-4 rounded-3xl bg-white p-8 shadow-2xl" onSubmit={async (e) => {
         e.preventDefault(); setErr(""); setLoading(true);
         const res = await signIn("credentials", { email, password, redirect: false });
         setLoading(false);
         if (res?.ok) r.push("/"); else setErr("ইমেইল বা পাসওয়ার্ড ভুল");
       }}>
         <div className="text-center">
-          <span className="inline-grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 text-xl font-black text-white shadow">✓</span>
-          <h1 className="mt-3 text-xl font-black">ফ্রড চেকার</h1>
-          <p className="text-sm text-slate-500">টিম অ্যাকাউন্টে লগইন করুন</p>
+          <span className="inline-grid h-14 w-14 place-items-center rounded-2xl bg-slate-900 text-2xl font-black text-amber-400 shadow-lg">✓</span>
+          <h1 className="mt-3 text-2xl font-black text-slate-900">ফ্রড চেকার</h1>
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">Courier Risk Intelligence</p>
         </div>
-        <input className="w-full rounded-2xl border p-3 outline-orange-500" placeholder="ইমেইল" type="email"
+        <input className="w-full rounded-2xl border border-slate-200 bg-slate-50 p-3 outline-amber-500" placeholder="ইমেইল" type="email"
           value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input className="w-full rounded-2xl border p-3 outline-orange-500" type="password" placeholder="পাসওয়ার্ড"
+        <input className="w-full rounded-2xl border border-slate-200 bg-slate-50 p-3 outline-amber-500" type="password" placeholder="পাসওয়ার্ড"
           value={password} onChange={(e) => setPassword(e.target.value)} />
-        {err && <p className="rounded-xl bg-red-50 p-2 text-center text-sm text-red-600">{err}</p>}
-        <button disabled={loading} className="w-full rounded-2xl bg-gradient-to-r from-orange-500 to-amber-500 p-3 font-bold text-white shadow transition hover:opacity-90 disabled:opacity-50">
+        {err && <p className="rounded-xl bg-red-50 p-2 text-center text-sm font-medium text-red-600 ring-1 ring-red-200">{err}</p>}
+        <button disabled={loading} className="w-full rounded-2xl bg-slate-900 p-3 font-black text-white shadow transition hover:bg-slate-700 disabled:opacity-50">
           {loading ? "ঢুকছি…" : "লগইন"}
         </button>
       </form>

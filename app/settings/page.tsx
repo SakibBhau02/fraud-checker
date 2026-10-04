@@ -6,9 +6,12 @@ export default function Settings() {
   const [session, setSession] = useState(""); const [did, setDid] = useState("");
   const [msg, setMsg] = useState(""); const [busy, setBusy] = useState(false);
   return (
-    <main className="mx-auto max-w-xl space-y-4 px-4 py-8">
-      <h1 className="text-2xl font-black">সেটিংস <span className="text-sm font-medium text-slate-400">(admin)</span></h1>
-      <div className="space-y-3 rounded-3xl border bg-white p-5 shadow-sm">
+    <main className="mx-auto max-w-2xl space-y-4 px-4 py-8">
+      <div>
+        <h1 className="text-2xl font-black">সেটিংস <span className="text-sm font-medium text-slate-400">(admin)</span></h1>
+        <p className="text-xs text-slate-500">সেশন, টেস্ট ও API key ব্যবস্থাপনা</p>
+      </div>
+      <div className="space-y-3 rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200">
         <p className="text-sm text-slate-600">ParcelVai-তে লগইন করে cookie থেকে <code className="rounded bg-slate-100 px-1 font-mono">bd_session</code>-এর মান এনে এখানে বসান। Expire হলে এখান থেকেই বদলানো যায় — redeploy লাগে না।</p>
         <input className="w-full rounded-2xl border p-3 font-mono text-xs outline-orange-500" placeholder="bd_session (user:182:...)"
           value={session} onChange={(e) => setSession(e.target.value)} />

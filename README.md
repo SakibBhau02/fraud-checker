@@ -24,6 +24,8 @@ npm i
 # PARCELVAI_DID="..."                 (ParcelVai cookie: _bdd_did)
 # SEED_ADMIN_EMAIL="admin@example.com"
 # SEED_ADMIN_PASSWORD="শক্ত-পাসওয়ার্ড"
+# SEED_SUPERADMIN_EMAIL="superadmin@example.com"
+# SEED_SUPERADMIN_PASSWORD="আরো-শক্ত-পাসওয়ার্ড"
 # CACHE_TTL_HOURS="24"
 npx prisma migrate dev
 npm run dev
@@ -43,6 +45,12 @@ Cookies → `bd_session`-এর মান কপি করুন।
 3. Build Command: `npx prisma migrate deploy && next build`।
 4. ডেপ্লয়ের পর একবার `npx prisma db seed` (বা Vercel console থেকে) চালিয়ে
    admin বানান। Session expire হলে `/settings` থেকে বদলে নিন — redeploy লাগে না।
+
+## রোল ও API key সীমা
+
+- `member` — সর্বোচ্চ ৩টা API key
+- `admin` — সর্বোচ্চ ১৫টা API key
+- `superadmin` — unlimited key + `/settings`-এ **সব ইউজারের key দেখা/বাতিল**
 
 ## বাইরের ওয়েবসাইট থেকে ব্যবহার (API)
 

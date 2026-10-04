@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { generateApiKey, hashApiKey } from "@/lib/apikey";
+import { generateApiKey, hashApiKey, keyLimitFor } from "@/lib/apikey";
 import { prisma } from "@/lib/prisma";
 
 async function me() {
@@ -25,6 +25,11 @@ export async function POST(req: NextRequest) {
   if (!user) return NextResponse.json({ error_bn: "লগইন প্রয়োজন" }, { status: 401 });
   const { label } = (await req.json().catch(() => ({}))) as { label?: string };
   if (!label?.trim()) return NextResponse.json({ error_bn: "key-এর নাম দিন" }, { status: 400 });
+  const active = await prisma.apiKey.count({ where: { userId: user.id, revoked: false } });
+  const limit = keyLimitFor(user.role);
+  if (active >= limit) {
+    return NextResponse.json({ error_bn: `সর্বোচ্চ ${limit}টা key বানানো যাবে (বর্তমান: ${active}) — পুরনো key বাতিল করুন` }, { status: 403 });
+  }
   const { key, prefix } = generateApiKey();
   const created = await prisma.apiKey.create({
     data: { label: label.trim(), keyHash: hashApiKey(key), prefix, userId: user.id },

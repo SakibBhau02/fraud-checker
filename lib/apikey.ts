@@ -14,3 +14,9 @@ export function extractApiKey(headers: Headers): string | null {
   if (auth?.toLowerCase().startsWith("bearer ")) return auth.slice(7).trim();
   return null;
 }
+export type Role = "member" | "admin" | "superadmin";
+export function keyLimitFor(role: string | undefined): number {
+  if (role === "superadmin") return Infinity;
+  if (role === "admin") return 15;
+  return 3;
+}
