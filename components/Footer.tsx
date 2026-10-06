@@ -6,6 +6,10 @@ export default function Footer() {
         <a href="https://www.zoolyum.com/" target="_blank" rel="noopener noreferrer" title="Zoolyum — zoolyum.com">
           <img src="/zoolyum-logo.svg" alt="Zoolyum" className="h-6 w-auto opacity-90 transition hover:opacity-100" />
         </a>
+        <span className="text-slate-600">·</span>
+        <a href="/api-docs" className="font-medium text-slate-300 underline-offset-4 hover:text-white hover:underline">
+          API Docs
+        </a>
       </p>
     </footer>
   );

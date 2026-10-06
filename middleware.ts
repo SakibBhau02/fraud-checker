@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export default withAuth(
   function middleware(req) {
     const { pathname } = req.nextUrl;
-    const isPublic = pathname === "/" || pathname === "/login";
+    const isPublic = pathname === "/" || pathname === "/login" || pathname === "/api-docs";
     if (!req.nextauth.token && !isPublic) {
       const url = req.nextUrl.clone();
       url.pathname = "/login";

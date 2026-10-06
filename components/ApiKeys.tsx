@@ -32,7 +32,8 @@ export default function ApiKeys() {
       <h2 className="font-black">API Keys <span className="text-xs font-medium text-slate-400">বাইরের ওয়েবসাইটের জন্য</span></h2>
       <p className="text-sm text-slate-600">
         Endpoint: <code className="rounded bg-slate-100 px-1 font-mono text-xs">POST /api/v1/check</code> — হেডারে{" "}
-        <code className="rounded bg-slate-100 px-1 font-mono text-xs">x-api-key: fk_...</code>
+        <code className="rounded bg-slate-100 px-1 font-mono text-xs">x-api-key: fk_...</code>{" "}
+        <a href="/api-docs" className="font-bold text-amber-700 underline">HTML ডকস দেখুন →</a>
       </p>
       <div className="flex gap-2">
         <input className="flex-1 rounded-2xl border p-2.5 text-sm outline-orange-500" placeholder="Key-এর নাম (যেমন: mystore.com)"
