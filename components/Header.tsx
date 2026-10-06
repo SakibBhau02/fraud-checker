@@ -26,9 +26,16 @@ export default function Header() {
               <span className="block text-[10px] font-medium uppercase tracking-widest text-slate-400">Courier Risk Intelligence</span>
             </span>
           </Link>
+          <div className="flex items-center gap-3">
+            <a href="https://www.zoolyum.com/" target="_blank" rel="noopener noreferrer" title="Zoolyum"
+              className="flex items-center gap-1.5 rounded-lg bg-slate-900 px-2.5 py-1.5 transition hover:bg-slate-700">
+              <span className="text-[10px] font-medium uppercase tracking-widest text-slate-400">by</span>
+              <img src="/zoolyum-logo.svg" alt="Zoolyum" className="h-5 w-auto" />
+            </a>
           <Link href="/login" className="rounded-full bg-slate-900 px-5 py-2 text-sm font-bold text-white transition hover:bg-slate-700">
             লগইন
           </Link>
+          </div>
         </div>
       </header>
     );
@@ -41,6 +48,12 @@ export default function Header() {
           <span>
             <span className="block font-black leading-tight">ফ্রড চেকার</span>
             <span className="block text-[10px] font-medium uppercase tracking-widest text-slate-400">Courier Risk Intelligence</span>
+          </span>
+          <span className="ml-1 hidden items-center gap-1.5 border-l border-white/15 pl-3 sm:flex">
+            <span className="text-[10px] font-medium uppercase tracking-widest text-slate-500">by</span>
+            <a href="https://www.zoolyum.com/" target="_blank" rel="noopener noreferrer" title="Zoolyum — zoolyum.com">
+              <img src="/zoolyum-logo.svg" alt="Zoolyum" className="h-6 w-auto opacity-90 transition hover:opacity-100" />
+            </a>
           </span>
         </Link>
         <nav className="flex items-center gap-1 text-sm">
