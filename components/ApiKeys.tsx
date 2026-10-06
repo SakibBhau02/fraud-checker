@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 type Key = { id: string; label: string; prefix: string; revoked: boolean; lastUsedAt: string | null; createdAt: string; user?: { email: string; name: string } };
 
-export default function ApiKeys() {
+export default function ApiKeys({ hidden = false, hiddenNote = "" }: { hidden?: boolean; hiddenNote?: string }) {
   const { data } = useSession();
   const role = (data?.user as unknown as { role?: string } | undefined)?.role;
   const [keys, setKeys] = useState<Key[]>([]);
@@ -26,6 +26,15 @@ export default function ApiKeys() {
     if (!confirm(`"${label}" বাতিল করবেন?`)) return;
     await fetch(`/api/keys/${id}/revoke`, { method: "POST" });
     load();
+  }
+  if (hidden) {
+    return (
+      <div className="space-y-2 rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200">
+        <h2 className="font-black">API Keys</h2>
+        <p className="text-sm text-slate-600">{hiddenNote || "API key শুধু টিম অ্যাকাউন্ট থেকে বানানো যায়।"}</p>
+        <a href="/api-docs" className="text-sm font-bold text-amber-700 underline">API ডকস দেখুন →</a>
+      </div>
+    );
   }
   return (
     <div className="space-y-3 rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200">

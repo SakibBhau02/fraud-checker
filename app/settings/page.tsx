@@ -7,6 +7,7 @@ import Members from "@/components/Members";
 export default function Settings() {
   const { data } = useSession();
   const role = (data?.user as unknown as { role?: string } | undefined)?.role;
+  const isTeam = Boolean(data?.user?.email);
   const [session, setSession] = useState(""); const [did, setDid] = useState("");
   const [msg, setMsg] = useState(""); const [busy, setBusy] = useState(false);
   return (
@@ -42,7 +43,7 @@ export default function Settings() {
           {msg && <p className="rounded-xl bg-slate-50 p-2 text-sm font-medium">{msg}</p>}
         </div>
       )}
-      <ApiKeys />
+      <ApiKeys hidden={!isTeam} hiddenNote="API key শুধু টিম অ্যাকাউন্ট (ইমেইল+পাসওয়ার্ড লগইন) থেকে বানানো যায়।" />
       {role === "superadmin" && <Members />}
     </main>
   );

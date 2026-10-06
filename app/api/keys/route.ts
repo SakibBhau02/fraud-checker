@@ -5,6 +5,8 @@ import { generateApiKey, hashApiKey, keyLimitFor } from "@/lib/apikey";
 import { prisma } from "@/lib/prisma";
 
 async function me() {
+  // Team accounts only (NextAuth credentials). Clerk-only users get 401 —
+  // API keys are never issued to them.
   const session = await getServerSession(authOptions);
   if (!session?.user?.email) return null;
   return prisma.user.findUnique({ where: { email: session.user.email } });
