@@ -15,4 +15,4 @@ export default withAuth(
   { callbacks: { authorized: () => true } }
 );
 
-export const config = { matcher: ["/((?!api|_next|favicon.ico).*)"] };
+export const config = { matcher: ["/((?!api|_next|.*\\..*).*)"] };
