@@ -56,11 +56,13 @@ Cookies → `bd_session`-এর মান কপি করুন।
    `npx prisma db seed` — superadmin তৈরি হবে।
 4. Session expire হলে `/settings` থেকে বদলে নিন — redeploy লাগে না।
 
-## রোল ও টিম ব্যবস্থাপনা
+## রোল, কোটা ও টিম ব্যবস্থাপনা
 
+- লগইন ছাড়া — **৩টি ফ্রি ডেমো চেক** (তারপর লগইন চাইবে)
+- লগইনে (Clerk বা টিম অ্যাকাউন্ট) — **দিনে ৫০টি চেক**
 - `member` — নম্বর চেক + সর্বোচ্চ ৩টা API key; cookie দেখতেও পাবে না, বসাতেও পারবে না
 - `admin` — উপরের সব + সর্বোচ্চ ১৫টা API key
-- `superadmin` — unlimited key + `/settings`-এ **সব ইউজারের key দেখা/বাতিল** + **টিম মেম্বার বানানো/ডিলিট** + একমাত্র cookie (ParcelVai session) বসাতে পারবে
+- `superadmin` — unlimited চেক+key + `/settings`-এ **সব ইউজারের key দেখা/বাতিল** + **টিম মেম্বার বানানো/ডিলিট** + একমাত্র cookie (ParcelVai session) বসাতে পারবে। লগইন শুধু `/login` পেজে (ইমেইল+পাসওয়ার্ড)।
 
 মেম্বার বানাতে: superadmin দিয়ে লগইন → `/settings` → "টিম মেম্বার" থেকে নাম/ইমেইল/পাসওয়ার্ড/role দিয়ে যোগ করুন।
 

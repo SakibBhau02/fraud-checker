@@ -27,9 +27,11 @@ model CheckHistory {
   rawJson           Json
   checkedByUserId   String?
   checkedBy         User?    @relation(fields: [checkedByUserId], references: [id])
+  quotaKey          String?
   createdAt         DateTime @default(now())
   @@index([phone, createdAt])
   @@index([riskLevel, createdAt])
+  @@index([quotaKey, createdAt])
 }
 model AppSetting {
   key       String   @id

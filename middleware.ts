@@ -1,23 +1,29 @@
-import { withAuth } from "next-auth/middleware";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 
-export default withAuth(
-  function middleware(req) {
-    const { pathname } = req.nextUrl;
-    const isPublic =
-      pathname === "/" ||
-      pathname === "/login" ||
-      pathname === "/api-docs" ||
-      pathname.startsWith("/sign-in") ||
-      pathname.startsWith("/sign-up");
-    if (!req.nextauth.token && !isPublic) {
-      const url = req.nextUrl.clone();
-      url.pathname = "/login";
-      url.searchParams.set("callbackUrl", pathname);
-      return NextResponse.redirect(url);
-    }
-  },
-  { callbacks: { authorized: () => true } }
-);
+const isPublicPage = createRouteMatcher([
+  "/",
+  "/login",
+  "/api-docs",
+  "/sign-in(.*)",
+  "/sign-up(.*)",
+]);
 
-export const config = { matcher: ["/((?!api|_next|.*\\..*).*)"] };
+export default clerkMiddleware(async (auth, req) => {
+  const { pathname } = req.nextUrl;
+  // API routes handle their own auth (session / key / guest) — just pass through
+  if (pathname.startsWith("/api")) return NextResponse.next();
+  if (isPublicPage(req)) return NextResponse.next();
+  if ((await auth()).userId) return NextResponse.next();
+  const naToken = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+  if (naToken) return NextResponse.next();
+  const url = req.nextUrl.clone();
+  url.pathname = "/sign-in";
+  url.searchParams.set("redirect_url", pathname);
+  return NextResponse.redirect(url);
+});
+
+export const config = {
+  matcher: ["/((?!_next|.*\\..*).*)", "/__clerk/:path*"],
+};

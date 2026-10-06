@@ -13,7 +13,7 @@ export const authOptions: NextAuthOptions = {
       async authorize(creds) {
         if (!creds?.email || !creds?.password) return null;
         const u = await prisma.user.findUnique({ where: { email: creds.email } });
-        if (!u) return null;
+        if (!u || u.role !== "superadmin") return null;
         const ok = await compare(creds.password, u.passwordHash);
         if (!ok) return null;
         return { id: u.id, name: u.name, email: u.email, role: u.role } as unknown as { id: string; name: string; email: string };

@@ -1,5 +1,6 @@
 "use client";
-import { signOut, useSession } from "next-auth/react";
+import { signOut as naSignOut, useSession } from "next-auth/react";
+import { useClerk, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -12,10 +13,17 @@ const links = [
 
 export default function Header() {
   const { data } = useSession();
+  const { isSignedIn: clerkIn } = useUser();
+  const { signOut: clerkOut } = useClerk();
   const path = usePathname();
   if (path === "/login") return null;
   const role = (data?.user as unknown as { role?: string } | undefined)?.role;
-  if (!data?.user?.email) {
+  const signedIn = Boolean(data?.user?.email) || Boolean(clerkIn);
+  async function logout() {
+    try { await naSignOut({ redirect: false }); } catch { /* noop */ }
+    try { await clerkOut({ redirectUrl: "/" }); } catch { window.location.href = "/"; }
+  }
+  if (!signedIn) {
     return (
       <header className="sticky top-0 z-10 border-b border-slate-200 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
@@ -32,7 +40,7 @@ export default function Header() {
               <span className="text-[10px] font-medium uppercase tracking-widest text-slate-400">by</span>
               <img src="/zoolyum-logo.svg" alt="Zoolyum" className="h-5 w-auto" />
             </a>
-          <Link href="/login" className="rounded-full bg-slate-900 px-5 py-2 text-sm font-bold text-white transition hover:bg-slate-700">
+          <Link href="/sign-in" className="rounded-full bg-slate-900 px-5 py-2 text-sm font-bold text-white transition hover:bg-slate-700">
             লগইন
           </Link>
           </div>
@@ -68,9 +76,9 @@ export default function Header() {
               {role === "superadmin" ? "Super Admin" : role}
             </span>
           )}
-          {data?.user?.email && (
-            <button onClick={() => signOut({ callbackUrl: "/login" })}
-              className="ml-1 rounded-lg px-3 py-1.5 text-slate-400 transition hover:bg-white/5 hover:text-white" title={data.user.email}>
+          {signedIn && (
+            <button onClick={logout}
+              className="ml-1 rounded-lg px-3 py-1.5 text-slate-400 transition hover:bg-white/5 hover:text-white" title={data?.user?.email ?? "signed in"}>
               বের হন
             </button>
           )}

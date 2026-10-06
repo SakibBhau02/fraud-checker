@@ -19,6 +19,7 @@ function Form() {
         <span className="inline-grid h-14 w-14 place-items-center rounded-2xl bg-slate-900 text-2xl font-black text-amber-400 shadow-lg">✓</span>
         <h1 className="mt-3 text-2xl font-black text-slate-900">ফ্রড চেকার</h1>
         <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">Courier Risk Intelligence</p>
+        <p className="rounded-xl bg-amber-50 p-2 text-xs font-bold text-amber-700 ring-1 ring-amber-200">শুধু Super Admin লগইন</p>
       </div>
       <input className="w-full rounded-2xl border border-slate-200 bg-slate-50 p-3 outline-amber-500" placeholder="ইমেইল" type="email" autoComplete="off"
         value={email} onChange={(e) => setEmail(e.target.value)} />

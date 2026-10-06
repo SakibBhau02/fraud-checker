@@ -1,15 +1,18 @@
 import { describe, expect, it, vi } from "vitest";
 vi.mock("@/lib/check", () => ({
   BadPhoneError: class BadPhoneError extends Error {},
+  QuotaExceededError: class QuotaExceededError extends Error {},
+  checkQuota: async () => 49,
   runFraudCheck: vi.fn(async () => ({ phone: "01712345678", total: 10, delivered: 8, cancelled: 2, successRate: 80, riskLevel: "safe", couriers: [], partial: false, cached: false, checkedAt: new Date().toISOString() })),
 }));
 vi.mock("@/lib/prisma", () => ({
   prisma: {
     apiKey: {
       findUnique: async ({ where }: { where: { keyHash: string } }) =>
-        where.keyHash === "goodhash" ? { id: "k1", userId: "u1", revoked: false } : null,
+        where.keyHash === "goodhash" ? { id: "k1", userId: "u1", revoked: false, user: { id: "u1", role: "member" } } : null,
       update: async () => ({}),
     },
+    checkHistory: { count: async () => 0 },
   },
 }));
 vi.mock("@/lib/apikey", async (importOriginal) => {

@@ -4,6 +4,36 @@ import { parcelvaiSession } from "./settings";
 import { isValidPhone, normalizePhone } from "./phone";
 
 export class BadPhoneError extends Error {}
+export class QuotaExceededError extends Error {
+  remaining = 0;
+  isGuest: boolean;
+  constructor(isGuest: boolean) {
+    super(isGuest ? "demo limit over" : "daily limit over");
+    this.isGuest = isGuest;
+  }
+}
+
+export const GUEST_LIMIT = 3;
+export const USER_DAILY_LIMIT = 50;
+
+export function startOfToday(): Date {
+  const d = new Date();
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
+
+/** Throws QuotaExceededError when over limit. Returns remaining (after this request). */
+export async function checkQuota(quotaKey: string, opts: { isGuest: boolean; unlimited: boolean }): Promise<number> {
+  if (opts.unlimited) return Infinity;
+  if (opts.isGuest) {
+    const used = await prisma.checkHistory.count({ where: { quotaKey } });
+    if (used >= GUEST_LIMIT) throw new QuotaExceededError(true);
+    return GUEST_LIMIT - used - 1;
+  }
+  const used = await prisma.checkHistory.count({ where: { quotaKey, createdAt: { gte: startOfToday() } } });
+  if (used >= USER_DAILY_LIMIT) throw new QuotaExceededError(false);
+  return USER_DAILY_LIMIT - used - 1;
+}
 
 export interface CheckResult {
   phone: string; operator: string; total: number; delivered: number;
@@ -13,7 +43,11 @@ export interface CheckResult {
   partial: boolean; cached: boolean; checkedAt: string;
 }
 
-export async function runFraudCheck(rawPhone: string, userId: string | null, fresh = false): Promise<CheckResult> {
+export async function runFraudCheck(
+  rawPhone: string,
+  who: { userId: string | null; quotaKey: string },
+  fresh = false
+): Promise<CheckResult> {
   const phone = normalizePhone(String(rawPhone ?? ""));
   if (!isValidPhone(phone)) throw new BadPhoneError("bad phone");
 
@@ -43,7 +77,7 @@ export async function runFraudCheck(rawPhone: string, userId: string | null, fre
         phone, totalOrders: out.total, delivered: out.delivered, cancelled: out.cancelled,
         successRate: out.successRate, riskLevel: out.riskLevel,
         courierBreakdown: out.couriers as unknown as object, rawJson: (out.raw ?? {}) as object,
-        checkedByUserId: userId,
+        checkedByUserId: who.userId, quotaKey: who.quotaKey,
       },
     });
     return { ...out, partial, cached: false, checkedAt: new Date().toISOString() };

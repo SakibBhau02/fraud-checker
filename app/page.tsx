@@ -31,6 +31,8 @@ const risks: [string, string, string][] = [
 export default function Home() {
   const [phone, setPhone] = useState(""); const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(""); const [data, setData] = useState<CheckOut | null>(null);
+  const [quota, setQuota] = useState<{ remaining: number; isGuest: boolean } | null>(null);
+  const [needLogin, setNeedLogin] = useState(false);
   return (
     <main className="bg-white text-slate-900">
       {/* CHECK HERO */}
@@ -42,12 +44,17 @@ export default function Home() {
           <h1 className="mt-1 font-serif text-3xl font-black sm:text-4xl">কাস্টমার কি রিটার্ন করার মতো?</h1>
           <p className="mt-1 text-sm text-slate-300">নম্বর দিন — ৫ কুরিয়ারে ডেলিভারি ও রিটার্ন হিস্ট্রি এক জায়গায়।</p>
           <form className="relative mt-5 flex gap-2" onSubmit={async (e) => {
-            e.preventDefault(); setErr(""); setData(null); setLoading(true);
+            e.preventDefault(); setErr(""); setData(null); setNeedLogin(false); setLoading(true);
             try {
               const r = await fetch("/api/check", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ phone }) });
               const j = await r.json();
-              if (!r.ok) setErr(j.error_bn || "এরর হয়েছে");
-              else setData(j);
+              if (!r.ok) {
+                setErr(j.error_bn || "এরর হয়েছে");
+                if (j.loginRequired) setNeedLogin(true);
+              } else {
+                setData(j);
+                if (j.quota) setQuota(j.quota);
+              }
             } catch { setErr("নেটওয়ার্ক এরর"); } finally { setLoading(false); }
           }}>
             <div className="flex flex-1 items-center overflow-hidden rounded-2xl bg-white ring-amber-400 focus-within:ring-2">
@@ -61,8 +68,19 @@ export default function Home() {
             </button>
           </form>
         </div>
-        {err && <p className="rounded-2xl border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700">{err}</p>}
-        {data && <ResultCard d={data} />}
+      {err && (
+        <div className="space-y-2 rounded-2xl border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700">
+          <p>{err}</p>
+          {needLogin && <a href="/sign-in" className="inline-block rounded-full bg-slate-900 px-5 py-2 font-bold text-white">লগইন করে আনলিমিটেড চেক →</a>}
+        </div>
+      )}
+      {quota && !err && (
+        <p className="text-center text-xs text-slate-500">
+          {quota.isGuest ? `🎁 ফ্রি ডেমো আরও ${quota.remaining}টি বাকি — ` : `আজ আরও ${quota.remaining}টি চেক বাকি — `}
+          {quota.isGuest && <a href="/sign-in" className="font-bold underline">লগইন করুন</a>}
+        </p>
+      )}
+      {data && <ResultCard d={data} />}
       </section>
 
       {/* USPs */}
