@@ -1,3 +1,4 @@
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -31,11 +32,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col bg-slate-100 text-slate-900 antialiased`}
       >
-        <Providers>
+        <ClerkProvider>
+          <Providers>
           <Header />
           <div className="flex-1">{children}</div>
           <Footer />
-        </Providers>
+          </Providers>
+        </ClerkProvider>
       </body>
     </html>
   );

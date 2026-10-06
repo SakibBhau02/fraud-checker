@@ -2,7 +2,9 @@
   "name": "fraud-checker",
   "version": "0.1.0",
   "private": true,
-  "prisma": { "seed": "node prisma/seed.mjs" },
+  "prisma": {
+    "seed": "node prisma/seed.mjs"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && prisma migrate deploy && next build",
@@ -11,6 +13,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@clerk/nextjs": "^5.7.6",
     "@prisma/client": "^5.22.0",
     "bcryptjs": "^3.0.3",
     "next": "14.2.35",
