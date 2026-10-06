@@ -1,7 +1,7 @@
 # ফ্রড চেকার (Fraud Checker)
 
-টিমের জন্য কাস্টমার ডেলিভারি/রিটার্ন হিস্ট্রি চেকার। ডেটা সোর্স: ParcelVai
-(`GET /api/fraud-check?phone=` + আপনার `bd_session`)। প্রতিটি চেক Postgres-এ
+টিমের জন্য কাস্টমার ডেলিভারি/রিটার্ন হিস্ট্রি চেকার। কুরিয়ার ডেটা সোর্সের
+লাইভ session দিয়ে চেক করে প্রতিটি ফল Postgres-এ
 সেভ হয়, হিস্ট্রি + ড্যাশবোর্ড + CSV এক্সপোর্ট সহ।
 
 ## পেজ
@@ -9,7 +9,7 @@
 - `/` — নম্বর দিয়ে চেক + রেজাল্ট কার্ড (মোট/ডেলিভারড/রিটার্ন, সাকসেস %, রিস্ক ব্যাজ, কুরিয়ার টেবিল)
 - `/history` — সার্চ, রিস্ক ফিল্টার, পেজিনেশন, CSV ডাউনলোড
 - `/dashboard` — আজ / এই মাসে / High-Risk সামারি
-- `/settings` (admin) — ParcelVai `bd_session` বদলানো + টেস্ট চেক
+- `/settings` (admin) — ডেটা সোর্স `bd_session` বদলানো + টেস্ট চেক
 - `/login` — টিম লগইন
 
 ## লোকাল চালানো
@@ -20,8 +20,8 @@ npm i
 # DATABASE_URL="postgresql://user:pass@host:5432/fraud?sslmode=require"
 # NEXTAUTH_SECRET="32-অক্ষরের-র‍্যান্ডম-স্ট্রিং"
 # NEXTAUTH_URL="http://localhost:3000"
-# PARCELVAI_SESSION="user:182:..."   (ParcelVai cookie: bd_session)
-# PARCELVAI_DID="..."                 (ParcelVai cookie: _bdd_did)
+# PARCELVAI_SESSION="user:182:..."   (ডেটা সোর্স cookie: bd_session)
+# PARCELVAI_DID="..."                 (ডেটা সোর্স cookie: _bdd_did)
 # SEED_ADMIN_EMAIL="admin@example.com"
 # SEED_ADMIN_PASSWORD="শক্ত-পাসওয়ার্ড"
 # SEED_SUPERADMIN_EMAIL="superadmin@example.com"
@@ -31,7 +31,7 @@ npx prisma migrate dev
 npm run dev
 ```
 
-`bd_session` পেতে: ParcelVai-তে লগইন → ব্রাউজার DevTools → Application →
+`bd_session` পেতে: ডেটা সোর্স সাইটে লগইন → ব্রাউজার DevTools → Application →
 Cookies → `bd_session`-এর মান কপি করুন।
 
 টেস্ট: `npm test` (বর্তমানে ৬টা)। টেস্ট নম্বর: `01712345678`।
@@ -45,8 +45,8 @@ Cookies → `bd_session`-এর মান কপি করুন।
 | `DATABASE_URL` | Neon connection string (pooler URL, `?sslmode=require...` সহ) |
 | `NEXTAUTH_SECRET` | ৩২+ অক্ষরের র‍্যান্ডম স্ট্রিং (যেমন `openssl rand -base64 32`) |
 | `NEXTAUTH_URL` | `https://<আপনার-ডোমেন>` |
-| `PARCELVAI_SESSION` | ParcelVai cookie `bd_session`-এর মান |
-| `PARCELVAI_DID` | ParcelVai cookie `_bdd_did`-এর মান |
+| `PARCELVAI_SESSION` | ডেটা সোর্স cookie `bd_session`-এর মান |
+| `PARCELVAI_DID` | ডেটা সোর্স cookie `_bdd_did`-এর মান |
 | `SEED_SUPERADMIN_EMAIL` | superadmin ইমেইল |
 | `SEED_SUPERADMIN_PASSWORD` | superadmin পাসওয়ার্ড |
 | `CACHE_TTL_HOURS` | `24` (ঐচ্ছিক) |
@@ -62,7 +62,7 @@ Cookies → `bd_session`-এর মান কপি করুন।
 - লগইনে (Clerk বা টিম অ্যাকাউন্ট) — **দিনে ৫০টি চেক**
 - `member` — নম্বর চেক + সর্বোচ্চ ৩টা API key; cookie দেখতেও পাবে না, বসাতেও পারবে না
 - `admin` — উপরের সব + সর্বোচ্চ ১৫টা API key
-- `superadmin` — unlimited চেক+key + `/settings`-এ **সব ইউজারের key দেখা/বাতিল** + **টিম মেম্বার বানানো/ডিলিট** + একমাত্র cookie (ParcelVai session) বসাতে পারবে। লগইন শুধু `/login` পেজে (ইমেইল+পাসওয়ার্ড)।
+- `superadmin` — unlimited চেক+key + `/settings`-এ **সব ইউজারের key দেখা/বাতিল** + **টিম মেম্বার বানানো/ডিলিট** + একমাত্র ডেটা সোর্স cookie বসাতে পারবে। লগইন শুধু `/login` পেজে (ইমেইল+পাসওয়ার্ড)।
 
 মেম্বার বানাতে: superadmin দিয়ে লগইন → `/settings` → "টিম মেম্বার" থেকে নাম/ইমেইল/পাসওয়ার্ড/role দিয়ে যোগ করুন।
 
@@ -93,7 +93,7 @@ curl -X POST https://<আপনার-ডোমেন>/api/v1/check \
 ```
 
 - `riskLevel`: `safe` | `moderate` | `high_risk`
-- ভুল key → 401, ভুল নম্বর → 400, ParcelVai সমস্যা → 502 (বাংলা `error_bn` সহ)
+- ভুল key → 401, ভুল নম্বর → 400, সার্ভার সমস্যা → 502 (বাংলা `error_bn` সহ)
 - প্রতিটি API চেকও হিস্ট্রিতে সেভ হয় (key-এর মালিকের নামে)
 - `Authorization: Bearer fk_...` হেডারও চলবে
 
@@ -127,6 +127,6 @@ const d = await r.json(); // d.riskLevel, d.successRate ...
 ## নোট
 
 - নাম-ঠিকানা দেখানো বা সেভ করা হয় না, শুধু ডেলিভারি রেশিও।
-- Session expire হলে API বাংলায় জানাবে: “ParcelVai session expired”।
+- Session expire হলে API বাংলায় জানাবে: “সার্ভার session-এর মেয়াদ শেষ”।
 - Spec: `docs/superpowers/specs/2026-10-04-fraud-checker-design.md`।
   Plan: `docs/superpowers/plans/2026-10-04-fraud-checker.md`।

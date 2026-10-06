@@ -16,7 +16,7 @@ export default function Members() {
   return (
     <div className="space-y-3 rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200">
       <h2 className="font-black">টিম মেম্বার <span className="text-xs font-medium text-amber-600">(Super Admin)</span></h2>
-      <p className="text-sm text-slate-600">মেম্বাররা নম্বর চেক ও API key বানাতে পারবে — কিন্তু ParcelVai cookie বসাতে পারবে না।</p>
+      <p className="text-sm text-slate-600">মেম্বাররা নম্বর চেক ও API key বানাতে পারবে — কিন্তু ডেটা সোর্স cookie বসাতে পারবে না।</p>
       <div className="grid gap-2 sm:grid-cols-2">
         <input className="rounded-2xl border p-2.5 text-sm outline-amber-500" placeholder="নাম" value={name} onChange={(e) => setName(e.target.value)} />
         <input className="rounded-2xl border p-2.5 text-sm outline-amber-500" placeholder="ইমেইল" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />

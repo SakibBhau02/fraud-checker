@@ -32,7 +32,11 @@ export default function ApiKeys({ hidden = false, hiddenNote = "" }: { hidden?: 
       <div className="space-y-2 rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200">
         <h2 className="font-black">API Keys</h2>
         <p className="text-sm text-slate-600">{hiddenNote || "API key শুধু টিম অ্যাকাউন্ট থেকে বানানো যায়।"}</p>
-        <a href="/api-docs" className="text-sm font-bold text-amber-700 underline">API ডকস দেখুন →</a>
+        <p className="text-sm">
+          <a href="/api-docs" className="font-bold text-amber-700 underline">API ডকস দেখুন →</a>
+          <span className="text-slate-400"> · </span>
+          <a href="https://www.zoolyum.com/" target="_blank" rel="noopener noreferrer" className="font-bold text-amber-700 underline">সাহায্য লাগলে Zoolyum →</a>
+        </p>
       </div>
     );
   }
@@ -44,6 +48,13 @@ export default function ApiKeys({ hidden = false, hiddenNote = "" }: { hidden?: 
         <code className="rounded bg-slate-100 px-1 font-mono text-xs">x-api-key: fk_...</code>{" "}
         <a href="/api-docs" className="font-bold text-amber-700 underline">HTML ডকস দেখুন →</a>
       </p>
+      <div className="flex items-center justify-between rounded-2xl bg-slate-900 p-3 text-white">
+        <p className="text-xs">নিজের সিস্টেমে API বসাতে সাহায্য লাগবে?</p>
+        <a href="https://www.zoolyum.com/" target="_blank" rel="noopener noreferrer"
+          className="rounded-full bg-amber-400 px-4 py-1.5 text-xs font-black text-slate-900 transition hover:bg-amber-300">
+          Zoolyum-এ যোগাযোগ করুন →
+        </a>
+      </div>
       <div className="flex gap-2">
         <input className="flex-1 rounded-2xl border p-2.5 text-sm outline-orange-500" placeholder="Key-এর নাম (যেমন: mystore.com)"
           value={label} onChange={(e) => setLabel(e.target.value)} />

@@ -18,8 +18,8 @@ export default function Settings() {
       </div>
       {role === "superadmin" && (
         <div className="space-y-3 rounded-3xl bg-white p-5 shadow-xl ring-1 ring-slate-200">
-          <h2 className="font-black">ParcelVai Session <span className="text-xs font-medium text-amber-600">(শুধু Super Admin)</span></h2>
-          <p className="text-sm text-slate-600">ParcelVai-তে লগইন করে cookie থেকে <code className="rounded bg-slate-100 px-1 font-mono">bd_session</code>-এর মান এনে এখানে বসান। Expire হলে এখান থেকেই বদলানো যায় — redeploy লাগে না।</p>
+          <h2 className="font-black">ডেটা সোর্স Session <span className="text-xs font-medium text-amber-600">(শুধু Super Admin)</span></h2>
+          <p className="text-sm text-slate-600">লগইন করে cookie থেকে <code className="rounded bg-slate-100 px-1 font-mono">bd_session</code>-এর মান এনে এখানে বসান। Expire হলে এখান থেকেই বদলানো যায় — redeploy লাগে না।</p>
           <input className="w-full rounded-2xl border p-3 font-mono text-xs outline-orange-500" placeholder="bd_session (user:182:...)"
             value={session} onChange={(e) => setSession(e.target.value)} />
           <input className="w-full rounded-2xl border p-3 font-mono text-xs outline-orange-500" placeholder="_bdd_did (ঐচ্ছিক)"

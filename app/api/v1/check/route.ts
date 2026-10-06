@@ -27,9 +27,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid phone. Use 11-digit 01XXXXXXXXX format", error_bn: "সঠিক ১১ সংখ্যার মোবাইল নম্বর দিন (01XXXXXXXXX)" }, { status: 400 });
     }
     if (e instanceof UpstreamError) {
-      if (e.code === "UPSTREAM_LIMIT") return NextResponse.json({ error: "Upstream rate limited, retry later", error_bn: "ParcelVai লিমিট শেষ — কিছুক্ষণ পর আবার চেষ্টা করুন" }, { status: 502 });
-      if (e.code === "UPSTREAM_TIMEOUT") return NextResponse.json({ error: "Upstream timeout, retry later", error_bn: "ParcelVai থেকে উত্তর আসতে দেরি হচ্ছে — আবার চেষ্টা করুন" }, { status: 504 });
-      return NextResponse.json({ error: "Upstream check failed", error_bn: "ParcelVai থেকে তথ্য আনা যায়নি" }, { status: 502 });
+      if (e.code === "UPSTREAM_LIMIT") return NextResponse.json({ error: "Rate limited, retry later", error_bn: "সার্ভার লিমিট শেষ — কিছুক্ষণ পর আবার চেষ্টা করুন" }, { status: 502 });
+      if (e.code === "UPSTREAM_TIMEOUT") return NextResponse.json({ error: "Timeout, retry later", error_bn: "উত্তর আসতে দেরি হচ্ছে — আবার চেষ্টা করুন" }, { status: 504 });
+      return NextResponse.json({ error: "Check failed, retry later", error_bn: "তথ্য আনা যায়নি — কিছুক্ষণ পর আবার চেষ্টা করুন" }, { status: 502 });
     }
     return NextResponse.json({ error: "Check failed", error_bn: "চেক করা যায়নি" }, { status: 502 });
   }
